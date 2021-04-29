@@ -502,7 +502,7 @@ param_get(param_t param, void *val)
 	}
 
 	if (!params_active[param]) {
-		PX4_WARN("get: param %d (%s) not active", param, param_name(param));
+		PX4_DEBUG("get: param %d (%s) not active", param, param_name(param));
 	}
 
 	int result = PX4_ERROR;
@@ -625,7 +625,6 @@ param_get_system_default_value(param_t param, void *default_val)
 	}
 
 	int ret = PX4_OK;
-	param_lock_reader();
 
 	switch (param_type(param)) {
 	case PARAM_TYPE_INT32:
@@ -641,7 +640,6 @@ param_get_system_default_value(param_t param, void *default_val)
 		break;
 	}
 
-	param_unlock_reader();
 	return ret;
 }
 
